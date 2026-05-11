@@ -8,16 +8,49 @@ from app.services.bibliotecario_service import(
 )
 
 def listar_bibliotecarios():
-    pass
+    bibliotecarios = buscar_bibliotecarios()
+
+    return jsonify(bibliotecarios)
+
 
 def listar_bibliotecario_por_id(bibliotecario_id):
-    pass
+    bibliotecario = buscar_bibliotecarios_por_id(bibliotecario_id)
+
+    if not bibliotecario:
+        return jsonify({
+            "erro": "Bibliotecario não encontrado"
+        }), 404
+
+    return jsonify(bibliotecario), 200
+
 
 def criar_bibliotecario():
-    pass
+    data = request.get_json()
 
-def editar_bibliotecario():
-    pass
+    bibliotecario = cadastrar_bibliotecario(data)
 
-def remover_bibliotecario():
-    pass
+    return jsonify(bibliotecario), 201
+
+def editar_bibliotecario(bibliotecario_id):
+    data = request.get_json()
+
+    bibliotecario = atualizar_bibliotecario(bibliotecario_id, data)
+
+    if not bibliotecario:
+        return jsonify({
+            "erro": "Bibliotecario não encontrado"
+        }), 404
+    
+    return jsonify(bibliotecario), 200
+
+def remover_bibliotecario(bibliotecario_id):
+    removido = deletar_bibliotecarios(bibliotecario_id)
+
+    if not removido:
+        return jsonify({
+            "erro": "Bibliotecario não encontrado"
+        }), 404
+    
+    return jsonify({
+        "mensagem": "Bibliotecario removido com sucesso"
+    }), 200
