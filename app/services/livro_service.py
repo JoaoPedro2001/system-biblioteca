@@ -20,6 +20,7 @@ def buscar_livros():
 
     return resultado
 
+
 def buscar_livros_por_id(livro_id):
     session = SessionLocal()
 
@@ -47,6 +48,7 @@ def buscar_livros_por_id(livro_id):
     session.close()
 
     return resultado
+
 
 def cadastrar_livro(data):
     session = SessionLocal()
@@ -76,6 +78,7 @@ def cadastrar_livro(data):
     session.close()
 
     return resultado
+
 
 def atualizar_livro(livro_id, data):
     session = SessionLocal()
@@ -115,6 +118,7 @@ def atualizar_livro(livro_id, data):
     session.close()
 
     return resultado
+
 
 def detelar_livros(livro_id):
     session = SessionLocal()

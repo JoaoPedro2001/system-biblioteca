@@ -7,7 +7,13 @@ def create_app():
     CORS(app)
 
     from app.routes.livro_routes import livro_bp
+    from app.routes.leitor_routes import leitor_bp
+    from app.routes.bibliotecario_routes import bibliotecario_bp
+    from app.routes.emprestimo_routes import emprestimo_bp
 
     app.register_blueprint(livro_bp)
+    app.register_blueprint(leitor_bp)
+    app.register_blueprint(bibliotecario_bp)
+    app.register_blueprint(emprestimo_bp)
 
     return app

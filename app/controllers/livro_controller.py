@@ -12,6 +12,7 @@ def listar_livros():
 
     return jsonify(livros)
 
+
 def listar_livro_por_id(livro_id):
     livro = buscar_livros_por_id(livro_id)
 
@@ -22,12 +23,14 @@ def listar_livro_por_id(livro_id):
     
     return jsonify(livro), 200
 
+
 def criar_livro():
     data = request.get_json()
 
     livro = cadastrar_livro(data)
 
     return jsonify(livro), 201
+
 
 def editar_livro(livro_id):
     data = request.get_json()
@@ -39,7 +42,9 @@ def editar_livro(livro_id):
             "erro": "Livro não encontrado"
         }), 404
     
+    
     return jsonify(livro), 200
+
 
 def remover_livro(livro_id):
     removido = detelar_livros(livro_id)
@@ -50,5 +55,5 @@ def remover_livro(livro_id):
         }), 404
     
     return jsonify({
-        "mensagem": "livro removido com sucesso"
+        "mensagem": "Livro removido com sucesso"
     }), 200
