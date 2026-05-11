@@ -37,4 +37,4 @@ SessionLocal = sessionmaker(
 # Base ORM
 Base = declarative_base()
 
-print(f"Banco de dados DQLite criado em: {DATABASE_PATH}")
+print(f"Banco de dados SQLite criado em: {DATABASE_PATH}")

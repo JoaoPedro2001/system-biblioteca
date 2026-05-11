@@ -5,7 +5,7 @@ from sqlalchemy import (
     Date
 )
 
-from database import Base, engine
+from app.database import Base, engine
 
 class Leitor(Base):
     __tablename__ = "leitor"
