@@ -4,7 +4,7 @@ from sqlalchemy import (
     String,
 )
 
-from app.database import Base, engine
+from database import Base, engine
 
 class Livro(Base):
     __tablename__ = "livro"

@@ -8,16 +8,47 @@ from app.services.emprestimo_service import(
 )
 
 def listar_emprestimos():
-    pass
+    emprestimos = buscar_emprestimos()
+
+    return jsonify(emprestimos)
 
 def listar_emprestimo_por_id(emprestimo_id):
-    pass
+    emprestimo = buscar_emprestimos_por_id(emprestimo_id)
+
+    if not emprestimo:
+        return jsonify({
+            "erro": "Emprestimo não encontrado"
+        }), 404
+    
+    return jsonify(emprestimo), 200
 
 def criar_emprestimo():
-    pass
+    data = request.get_json()
 
-def editar_emprestimo():
-    pass
+    emprestimo = cadastrar_emprestimo(data)
 
-def remover_emprestimo():
-    pass
+    return jsonify(emprestimo), 201
+
+def editar_emprestimo(emprestimo_id):
+    data = request.get_json()
+
+    emprestimo = atualizar_emprestimo(emprestimo_id, data)
+
+    if not emprestimo:
+        return jsonify({
+            "erro": "Emprestimo não encontrado"
+        }), 404
+    
+    return jsonify(emprestimo), 200
+
+def remover_emprestimo(emprestimo_id):
+    removido = deletar_emprestimos(emprestimo_id)
+
+    if not removido:
+        return jsonify({
+            "erro": "Emprestimo não encontrado"
+        }), 404
+    
+    return jsonify({
+        "mensagem": "Emprestimo removido com sucesso"
+    }), 200

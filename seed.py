@@ -2,10 +2,10 @@ from datetime import date
 
 from database import SessionLocal
 
-from models.bibliotecario import Bibliotecario
-from models.leitor import Leitor
-from models.livro import Livro
-from models.emprestimo import Emprestimo
+from app.models.bibliotecario import Bibliotecario
+from app.models.leitor import Leitor
+from app.models.livro import Livro
+from app.models.emprestimo import Emprestimo
 
 # Criar sessão
 db = SessionLocal()

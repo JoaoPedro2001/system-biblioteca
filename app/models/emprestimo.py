@@ -6,10 +6,11 @@ from sqlalchemy import (
     ForeignKey
 )
 
-from app.database import Base, engine
-from models.livro import Livro
-from models.leitor import Leitor
-from models.bibliotecario import Bibliotecario
+from database import Base, engine
+
+from app.models.livro import Livro
+from app.models.leitor import Leitor
+from app.models.bibliotecario import Bibliotecario
 
 class Emprestimo(Base):
     __tablename__ = "emprestimo"
@@ -18,5 +19,5 @@ class Emprestimo(Base):
     leitor_id = Column(Integer, ForeignKey("leitor.id"))
     bibliotecario_id = Column(Integer, ForeignKey("bibliotecario.id"))
     data_emprestimo = Column(Date, nullable=False)
-    data_devolucao = Column(Date)
+    data_devolucao = Column(Date, nullable=False)
     status = Column(String(20), nullable=False)

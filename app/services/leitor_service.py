@@ -1,5 +1,5 @@
 from app.models.leitor import Leitor
-from app.database import SessionLocal
+from database import SessionLocal
 
 from datetime import date
 

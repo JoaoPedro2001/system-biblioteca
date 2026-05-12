@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from pathlib import Path
 
 # Define que o arquivo .db será gerado na pasta do projeto 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 # Pasta data
 DATA_DIR = BASE_DIR / "data"

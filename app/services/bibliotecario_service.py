@@ -1,5 +1,5 @@
 from app.models.bibliotecario import Bibliotecario
-from app.database import SessionLocal
+from database import SessionLocal
 
 def buscar_bibliotecarios():
     session = SessionLocal()

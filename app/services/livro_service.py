@@ -1,5 +1,5 @@
 from app.models.livro import Livro
-from app.database import SessionLocal
+from database import SessionLocal
 
 def buscar_livros():
     session = SessionLocal()
