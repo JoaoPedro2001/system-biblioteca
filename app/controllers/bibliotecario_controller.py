@@ -1,11 +1,9 @@
 from flask import jsonify, request
-from app.services.bibliotecario_service import(
-    buscar_bibliotecarios,
-    buscar_bibliotecarios_por_id,
-    cadastrar_bibliotecario,
-    atualizar_bibliotecario,
-    deletar_bibliotecarios,
-)
+from app.services.bibliotecarios.buscar_bibliotecarios import buscar_bibliotecarios
+from app.services.bibliotecarios.buscar_biliotecario_por_id import buscar_bibliotecario_por_id
+from app.services.bibliotecarios.cadastrar_bibliotecario import cadastrar_bibliotecario
+from app.services.bibliotecarios.atualizar_bibliotecario import atualizar_bibliotecario
+from app.services.bibliotecarios.deletar_bibliotecario import deletar_bibliotecario
 
 def listar_bibliotecarios():
     bibliotecarios = buscar_bibliotecarios()
@@ -14,7 +12,7 @@ def listar_bibliotecarios():
 
 
 def listar_bibliotecario_por_id(bibliotecario_id):
-    bibliotecario = buscar_bibliotecarios_por_id(bibliotecario_id)
+    bibliotecario = buscar_bibliotecario_por_id(bibliotecario_id)
 
     if not bibliotecario:
         return jsonify({
@@ -44,7 +42,7 @@ def editar_bibliotecario(bibliotecario_id):
     return jsonify(bibliotecario), 200
 
 def remover_bibliotecario(bibliotecario_id):
-    removido = deletar_bibliotecarios(bibliotecario_id)
+    removido = deletar_bibliotecario(bibliotecario_id)
 
     if not removido:
         return jsonify({

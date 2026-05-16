@@ -1,11 +1,9 @@
 from flask import jsonify, request
-from app.services.emprestimo_service import(
-    buscar_emprestimos,
-    buscar_emprestimos_por_id,
-    cadastrar_emprestimo,
-    atualizar_emprestimo,
-    deletar_emprestimos,
-)
+from app.services.emprestimos.buscar_emprestimos import buscar_emprestimos
+from app.services.emprestimos.buscar_emprestimo_por_id import buscar_emprestimo_por_id
+from app.services.emprestimos.cadastrar_emprestimo import cadastrar_emprestimo
+from app.services.emprestimos.atualizar_emprestimo import atualizar_emprestimo
+from app.services.emprestimos.deletar_emprestimo import deletar_emprestimo
 
 def listar_emprestimos():
     emprestimos = buscar_emprestimos()
@@ -13,7 +11,7 @@ def listar_emprestimos():
     return jsonify(emprestimos)
 
 def listar_emprestimo_por_id(emprestimo_id):
-    emprestimo = buscar_emprestimos_por_id(emprestimo_id)
+    emprestimo = buscar_emprestimo_por_id(emprestimo_id)
 
     if not emprestimo:
         return jsonify({
@@ -42,7 +40,7 @@ def editar_emprestimo(emprestimo_id):
     return jsonify(emprestimo), 200
 
 def remover_emprestimo(emprestimo_id):
-    removido = deletar_emprestimos(emprestimo_id)
+    removido = deletar_emprestimo(emprestimo_id)
 
     if not removido:
         return jsonify({

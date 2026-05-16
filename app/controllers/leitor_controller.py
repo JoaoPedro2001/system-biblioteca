@@ -1,11 +1,9 @@
 from flask import jsonify, request
-from app.services.leitor_service import(
-    buscar_leitores,
-    buscar_leitores_por_id,
-    cadastrar_leitor,
-    atualizar_leitor,
-    deletar_leitores,
-)
+from app.services.leitores.buscar_leitores import buscar_leitores
+from app.services.leitores.buscar_leitor_por_id import buscar_leitor_por_id
+from app.services.leitores.cadastrar_leitor import cadastrar_leitor
+from app.services.leitores.atualizar_leitor import atualizar_leitor
+from app.services.leitores.deletar_leitor import deletar_leitor
 
 def listar_leitores():
     leitores = buscar_leitores()
@@ -14,7 +12,7 @@ def listar_leitores():
 
 
 def listar_leitor_por_id(leitor_id):
-    leitor = buscar_leitores_por_id(leitor_id)
+    leitor = buscar_leitor_por_id(leitor_id)
 
     if not leitor:
         return jsonify({
@@ -46,7 +44,7 @@ def editar_leitor(leitor_id):
 
 
 def remover_leitor(leitor_id):
-    removido  = deletar_leitores(leitor_id)
+    removido  = deletar_leitor(leitor_id)
 
     if not removido:
         return jsonify({

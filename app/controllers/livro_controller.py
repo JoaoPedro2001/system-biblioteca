@@ -1,11 +1,9 @@
 from flask import jsonify, request
-from app.services.livro_service import(
-    buscar_livros,
-    cadastrar_livro,
-    buscar_livros_por_id,
-    atualizar_livro,
-    detelar_livros
-)
+from app.services.livros.buscar_livros import buscar_livros
+from app.services.livros.buscar_livro_por_id import buscar_livros_por_id
+from app.services.livros.cadastrar_livro import cadastrar_livro
+from app.services.livros.atualizar_livro import atualizar_livro
+from app.services.livros.deletar_livro import detelar_livro
 
 def listar_livros():
     livros = buscar_livros()
@@ -47,7 +45,7 @@ def editar_livro(livro_id):
 
 
 def remover_livro(livro_id):
-    removido = detelar_livros(livro_id)
+    removido = detelar_livro(livro_id)
 
     if not removido:
         return jsonify({
