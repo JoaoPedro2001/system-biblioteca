@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Leitor</title>
+    <title>Editar Empréstimo</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
 
@@ -15,27 +15,25 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="text-center mb-4">Editar Leitor</h2>
+                        <h2 class="text-center mb-4">Editar Empréstimo</h2>
 
                         <!-- Formulário -->
-                         <form id="form-leitor">
-                            <div class="mb-3">
-                                <label class="form-label">Nome</label>
-                                <input type="text" id="nome" class="form-control" required>
+                         <form id="form-emprestimo">
+                            <div class="mb-3 form-check">
+                                <label class="form-check-label">Renovar empréstimo (+7 dias)</label>
+                                <input type="checkbox" class="form-check-input" id="renovar">
                             </div>
+
                             <div class="mb-3">
-                                <label class="form-label">E-mail</label>
-                                <input type="text" id="email" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Telefone</label>
-                                <input type="text" id="telefone" class="form-control" required>
+                                <label class="form-label">Status</label>
+                                <input type="text" id="status" class="form-control" required>
+                            
                             </div>
 
                             <!-- Botões -->
                             <div class="d-flex justify-content-center gap-3">
                                 <button type="submit" class="btn btn-warning">Atualizar</button>
-                                <a href="/pages/visualizacao_leitores.html" class="btn btn-secondary">Voltar</a>
+                                <a href="/pages/visualizacao_emprestimos.html" class="btn btn-secondary">Voltar</a>
                             </div>
 
                         </form>
@@ -50,7 +48,7 @@
 
     </div>
 
-    <script src="/js/editar_leitor.js"></script>
+    <script src="/js/editar_emprestimo.js"></script>
 
 </body>
 

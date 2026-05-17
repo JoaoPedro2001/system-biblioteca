@@ -1,9 +1,10 @@
 from app.models.emprestimo import Emprestimo
 from database import SessionLocal
 
-from datetime import date
+from datetime import timedelta
 
 def atualizar_emprestimo(emprestimo_id, data):
+
     session = SessionLocal()
 
     emprestimo = (
@@ -16,24 +17,20 @@ def atualizar_emprestimo(emprestimo_id, data):
     if not emprestimo:
         session.close()
         return None
-    
-    emprestimo.livro_id=data["livro_id"]
-    emprestimo.leitor_id=data["leitor_id"]
-    emprestimo.bibliotecario_id=data["bibliotecario_id"]
-    emprestimo.data_emprestimo=date.fromisoformat(data["data_emprestimo"])
-    emprestimo.data_devolucao=date.fromisoformat(data["data_devolucao"])
-    emprestimo.status=data["status"]
+
+    emprestimo.status = data["status"]
+
+    if data.get("renovar"):
+
+        emprestimo.data_devolucao = (
+            emprestimo.data_devolucao + timedelta(days=7)
+        )
 
     session.commit()
 
     session.refresh(emprestimo)
 
     resultado = {
-        "id": emprestimo.id,
-        "livro_id": emprestimo.livro_id,
-        "leitor_id": emprestimo.leitor_id,
-        "bibliotecario_id": emprestimo.bibliotecario_id,
-        "data_emprestimo": emprestimo.data_emprestimo,
         "data_devolucao": emprestimo.data_devolucao,
         "status": emprestimo.status
     }

@@ -20,13 +20,31 @@ async function carregarEmprestimos() {
                         <td>
                             <input
                                 type="radio"
-                                name="bibliotecarioSelecionado"
+                                name="emprestimoSelecionado"
                                 value="${emprestimo.id}"
                             >
                         </td>
 
                         <td>
                             ${emprestimo.id}
+                        </td>
+                        <td>
+                            ${emprestimo.livro_id}
+                        </td>
+                        <td>
+                            ${emprestimo.leitor_id}
+                        </td>
+                        <td>
+                            ${emprestimo.bibliotecario_id}
+                        </td>
+                        <td>
+                            ${emprestimo.data_emprestimo}
+                        </td>
+                        <td>
+                            ${emprestimo.data_devolucao}
+                        </td>
+                        <td>
+                            ${emprestimo.status}
                         </td>
 
                     </tr>
@@ -39,12 +57,12 @@ async function carregarEmprestimos() {
         function obterEmprestimoSelecionado() {
 
             const selecionado = document.querySelector(
-                'input[name="bibliotecarioSelecionado"]:checked'
+                'input[name="emprestimoSelecionado"]:checked'
             )
 
             if (!selecionado) {
 
-                alert("Selecione um bibliotecário.")
+                alert("Selecione um empréstimo.")
 
                 return null
             }
@@ -54,7 +72,7 @@ async function carregarEmprestimos() {
 
         function editarEmprestimo() {
 
-            const id = obterBibliotecaioSelecionado()
+            const id = obterEmprestimoSelecionado()
 
             if (!id) return
 
@@ -69,7 +87,7 @@ async function carregarEmprestimos() {
             );
 
             if (!emprestimoSelecionado) {
-                alert("Selecione um bibliotecário");
+                alert("Selecione um empréstimo");
                 return;
             }
             
