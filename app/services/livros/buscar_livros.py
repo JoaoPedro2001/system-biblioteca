@@ -13,7 +13,10 @@ def buscar_livros():
             "id": livro.id,
             "titulo": livro.titulo,
             "autor": livro.autor,
-            "isbn": livro.isbn
+            "isbn": livro.isbn,
+            "categoria": livro.categoria,
+            "quantidade_total": livro.quantidade_total,
+            "quantidade_disponivel": livro.quantidade_disponivel
         })
 
     session.close()

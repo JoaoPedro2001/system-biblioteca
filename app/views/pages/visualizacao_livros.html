@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Livros</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <!-- Título -->
+
+        <div class="text-center mb-5">
+            <h1>Livros</h1>
+            <p class="text-muted">Gerenciamento de livros cadastrados</p>
+
+        </div>
+        <!-- Tabela -->
+        <div class="card shadow">
+
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Selecionar</th>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>ISBN</th>
+                            <th>Categoria</th>
+                            <th>Quant. Total</th>
+                            <th>Quant. Disponível</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabela-livros">
+
+                        <!-- Javascript insere o dados do BD aqui -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a
+                class="btn btn-success w-100"
+                href="novo_livro.html"    
+            >
+                Novo Livro
+            </a>
+
+            <button
+                class="btn btn-warning w-100"
+                onclick="editarLivro()"
+            >
+                Editar Livro
+            </button>
+
+            <button
+                class="btn btn-danger w-100"
+                onclick="removerLivro()"
+            >
+                Remover Livro
+            </button>
+            
+            <a
+                class="btn btn-secondary w-100"
+                href="../index.html"
+            >
+                Voltar
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/livros.js"></script>
+
+</body>
+
+</html>
