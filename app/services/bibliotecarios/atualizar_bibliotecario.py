@@ -17,7 +17,12 @@ def atualizar_bibliotecario(bibliotecairo_id, data):
     
     bibliotecario.nome=data["nome"]
     bibliotecario.email=data["email"]
-    bibliotecario.senha=data["senha"]
+
+    # Atualizar senha apenas se uma nova for enviada
+    if "senha" in data:
+        bibliotecario.senha=data["senha"]
+    
+
     bibliotecario.admin=data["admin"]
 
     session.commit()
