@@ -52,6 +52,15 @@ Em ambos os casos, você pode desativar o venv usando o seguinte comando no term
 deactivate
 ```
 
+### Requirements
+
+A pasta do sistema contém um arquivo chamado requirements.txt, o qual possui uma lista das extenções necessárias para rodar o sistema. Para instalar as extenções, voce pode usar o seguinte comando no terminal assim que o venv for ativado:
+
+
+```bash
+pip install -r requirements.txt
+```
+
 ### Banco de dados
 
 Primeiro, verifique se seu dispositivo possui SQLite3 instalado, Caso não, instale-o com o seguinte comando de terminal caso esteja em sistema Linux:
