@@ -86,3 +86,52 @@ Com este código rodando, será geado no terminal um link Localhost (http://127.
 Para fazer com que o run.py pare de rodar, voce pode utilizar ctrl + c no terminal para finalizar a seção.
 
 ### Tutorial do front-end
+
+Ao acessar o front-end por meio do link localhost, você verá uma tela inicial com dois com quatro botões, os quais o levarão para a pagina de visualização das tabelas correspondentes e que também contem as opções de interação das operações CRUD com o banco de dados. Estes botões são:
+
+* Livros;
+* Leitores;
+* Bibliotecários;
+* Empréstimos;
+
+#### Livros
+
+Na página de livros voccê possui a tela de visualização dos livros, na qual você pode ver os livros cadastrados no banco de dados. Abaixo se encontram botões de interação, permitindo operações CRUD com o banco.
+
+* Novo Livro abre uma página para a inserção de dados para uma nova instância da entidade livro;
+* Ao selecionar uma das instâncias por meio das caixas de seleção (Selecionar), você obtem acesso a Editar Livro e Remover Livro:
+ * Editar Livro puxa os dados da instância selacionada e permite que você os altere;
+ * Remover Livro apaga a instância selecionada da do banco de dados.
+* O botão Voltar retorna a tela inicial;
+
+#### Leitores
+
+
+Na página de leitores voccê possui a tela de visualização dos leitores, na qual você pode ver os leitores cadastrados no banco de dados. Abaixo se encontram botões de interação, permitindo operações CRUD com o banco.
+
+* Novo Leitor abre uma página para a inserção de dados para uma nova instância da entidade leitor;
+* Ao selecionar uma das instâncias por meio das caixas de seleção (Selecionar), você obtem acesso a Editar Leitor e Remover Leitor:
+ * Editar Leitor puxa os dados da instância selacionada e permite que você os altere;
+ * Remover Leitor apaga a instância selecionada da do banco de dados.
+* O botão Voltar retorna a tela inicial;
+
+#### Bibliotecários
+
+Na página de bibliotecários voccê possui a tela de visualização dos bibliotecários, na qual você pode ver os bibliotecários cadastrados no banco de dados. Abaixo se encontram botões de interação, permitindo operações CRUD com o banco.
+
+* Novo Bibliotecário abre uma página para a inserção de dados para uma nova instância da entidade leitor. Diferente dos anteriores, Novo Bibliotecário possui campos "Senha" e "Confirmar Senha" as quais o dado preenchido deve ser o mesmo caso o contrário, o sistema não aceita a nova instância;
+* Ao selecionar uma das instâncias por meio das caixas de seleção (Selecionar), você obtem acesso a Editar Bibliotecário e Remover Bibliotecário:
+ * Editar Bibliotecário puxa os dados da instância selacionada e permite que você os altere. Os campos  "Senha" e "Confirmar Senha" em Editar Bbiliotecário funcionam da mesma maneira que em Novo Bibliotecário, porém você pode optar por deixar os dois campos em branco para manter a senha já cadastrada;
+ * Remover Bibliotecário apaga a instância selecionada da do banco de dados.
+* O botão Voltar retorna a tela inicial;
+
+#### Empréstimos
+
+Na página de empréstimos voccê possui a tela de visualização dos empréstimos, na qual você pode ver os empréstimos cadastrados no banco de dados. Abaixo se encontram botões de interação, permitindo operações CRUD com o banco.
+
+* Novo Empréstimo abre uma página para a inserção de dados para uma nova instância da entidade leitor. Diferente dos anteriores, os campos de Novo Empréstimo não são livres, mas possuem opções pré-determinadas baseadas no  conteúdo das tabelas de livro, leitor e bibliotecário, permitindo definir qual livro está sendo emprestado, qual leitor está recebendo o livro e qual biliotecário fez o empréstimo;
+* Ao selecionar uma das instâncias por meio das caixas de seleção (Selecionar), você obtem acesso a Editar Empréstimo e Remover Empréstimo:
+ * Editar Empréstimo puxa os dados da instância selacionada e permite que você os altere. Diferente dos anteriores, Editar Empréstimo póssui uma caixa de seleção "Renovar empréstimo (+7 dias)", a qual irá automaticamente adicionar mais uma semana a data de devolução;
+ * Remover Empréstimo apaga a instância selecionada da do banco de dados.
+* O botão Voltar retorna a tela inicial;
+ 
