@@ -4,7 +4,7 @@ async function carregarEmprestimos() {
                 "http://127.0.0.1:5000/emprestimos"
             )
 
-            const bibliotecarios = await resposta.json()
+            const emprestimos = await resposta.json()
 
             const tabela = document.getElementById(
                 "tabela-emprestimos"
@@ -12,7 +12,7 @@ async function carregarEmprestimos() {
 
             tabela.innerHTML = ""
 
-            bibliotecarios.forEach(emprestimo => {
+            emprestimos.forEach(emprestimo => {
 
                 tabela.innerHTML += `
                 

@@ -6,7 +6,7 @@ from sqlalchemy import (
     ForeignKey
 )
 
-from database import Base, engine
+from database import Base
 
 from app.models.livro import Livro
 from app.models.leitor import Leitor

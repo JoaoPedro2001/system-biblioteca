@@ -9,8 +9,8 @@ def cadastrar_livro(data):
         autor=data["autor"],
         isbn=data["isbn"],
         categoria=data["categoria"],
-        quantidade_total=data["quantidade_total"],
-        quantidade_disponivel=data["quantidade_disponivel"]
+        status=data.get("status", "disponivel"),
+        observacoes=data.get("observacoes", "")
     )
 
     session.add(novo_livro)
@@ -24,6 +24,9 @@ def cadastrar_livro(data):
         "titulo": novo_livro.titulo,
         "autor":novo_livro.autor,
         "isbn": novo_livro.isbn,
+        "categoria": novo_livro.categoria,
+        "status": novo_livro.status,
+        "observacoes": novo_livro.observacoes
     }
 
     session.close()

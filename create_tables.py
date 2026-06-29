@@ -5,7 +5,6 @@ from app.models.leitor import Leitor
 from app.models.livro import Livro
 from app.models.emprestimo import Emprestimo
 
-# Registra as tabelas importadas e as cria em conjunto
-Base.metadata.create_all(engine)
+Base.metadata.create_all(bind=engine)
 
-print("Tabelas criadas!")
+print("Banco criado com sucesso.")

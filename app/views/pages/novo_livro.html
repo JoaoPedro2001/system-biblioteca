@@ -34,8 +34,20 @@
                                 <input type="text" id="categoria" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Quantidade</label>
-                                <input type="text" id="quantidade" class="form-control" required>
+                                <label class="form-label">Status</label>
+                                <select id="status" class="form-select">
+                                    <option value="disponivel" selected>Disponível</option>
+                                    <option value="emprestado">Emprestado</option>
+                                    <option value="manutencao">Manutenção</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Observações</label>
+                                <textarea
+                                    id="observacoes"
+                                    class="form-control"
+                                    rows="3">
+                                </textarea>
                             </div>
 
                             <!-- Botões -->

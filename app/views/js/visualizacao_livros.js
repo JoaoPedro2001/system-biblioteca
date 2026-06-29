@@ -45,10 +45,10 @@ async function carregarLivros() {
                             ${livro.categoria}
                         </td>
                         <td>
-                            ${livro.quantidade_total}
+                            ${livro.status}
                         </td>
                         <td>
-                            ${livro.quantidade_disponivel}
+                            ${livro.observacoes ?? ""}
                         </td>
 
                     </tr>

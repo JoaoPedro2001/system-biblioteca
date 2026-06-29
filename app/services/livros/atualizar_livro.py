@@ -19,8 +19,8 @@ def atualizar_livro(livro_id, data):
     livro.autor=data["autor"]
     livro.isbn=data["isbn"]
     livro.categoria=data["categoria"]
-    livro.quantidade_total=data["quantidade_total"]
-    livro.quantidade_disponivel=data["quantidade_disponivel"]
+    livro.status = data["status"]
+    livro.observacoes = data.get("observacoes", "")
     
     session.commit()
 
@@ -32,8 +32,8 @@ def atualizar_livro(livro_id, data):
         "autor": livro.autor,
         "isbn": livro.isbn,
         "categoria": livro.categoria,
-        "quantidade_total": livro.quantidade_total,
-        "quantidade_disponivel": livro.quantidade_disponivel
+        "status": livro.status,
+        "observacoes": livro.observacoes
     }
 
     session.close()

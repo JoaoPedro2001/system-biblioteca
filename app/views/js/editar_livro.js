@@ -29,8 +29,12 @@ async function carregarLivro() {
     ).value = livro.categoria
 
     document.getElementById(
-        "quantidade"
-    ).value = livro.quantidade_total
+        "status"
+    ).value = livro.status
+
+    document.getElementById(
+        "observacoes"
+    ).value = livro.observacoes
 
 }
 
@@ -64,17 +68,13 @@ formulario.addEventListener(
                 "categoria"
             ).value,
 
-            quantidade_total: parseInt(
-                document.getElementById(
-                    "quantidade"
-                ).value
-            ),
+            status: document.getElementById(
+                "status"
+            ).value,
 
-            quantidade_disponivel: parseInt(
-                document.getElementById(
-                    "quantidade"
-                ).value
-            )
+            observacoes: document.getElementById(
+                "observacoes"
+            ).value
 
         }
 

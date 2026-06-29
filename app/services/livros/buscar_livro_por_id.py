@@ -21,8 +21,8 @@ def buscar_livros_por_id(livro_id):
         "autor": livro.autor,
         "isbn": livro.isbn,
         "categoria": livro.categoria,
-        "quantidade_total": livro.quantidade_total,
-        "quantidade_disponivel": livro.quantidade_disponivel
+        "status": livro.status,
+        "observacoes": livro.observacoes
     }
 
     session.close()

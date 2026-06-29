@@ -25,6 +25,9 @@ def criar_emprestimo():
 
     emprestimo = cadastrar_emprestimo(data)
 
+    if "erro" in emprestimo:
+        return jsonify(emprestimo), 409
+
     return jsonify(emprestimo), 201
 
 def editar_emprestimo(emprestimo_id):

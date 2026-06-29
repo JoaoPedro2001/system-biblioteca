@@ -1,10 +1,32 @@
-from app.models.emprestimo import Emprestimo
-from database import SessionLocal
-
 from datetime import date, timedelta
 
+from app.models.emprestimo import Emprestimo
+from app.models.livro import Livro
+
+from database import SessionLocal
+
 def cadastrar_emprestimo(data):
+
     session = SessionLocal()
+
+    livro = (
+        session
+        .query(Livro)
+        .filter(Livro.id == data["livro_id"])
+        .first()
+    )
+
+    if not livro:
+        session.close()
+        return {
+            "erro": "Livro não encontrado"
+        }
+
+    if livro.status != "disponivel":
+        session.close()
+        return {
+            "erro": "Livro indisponível para empréstimo"
+        }
 
     data_emprestimo = date.today()
 
@@ -20,6 +42,8 @@ def cadastrar_emprestimo(data):
     )
 
     session.add(novo_emprestimo)
+
+    livro.status = "emprestado"
 
     session.commit()
 

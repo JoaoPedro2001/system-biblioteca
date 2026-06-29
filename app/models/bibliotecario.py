@@ -5,7 +5,7 @@ from sqlalchemy import (
     Boolean,
 )
 
-from database import Base, engine
+from database import Base
 
 class Bibliotecario(Base):
     __tablename__ = "bibliotecario"

@@ -6,7 +6,9 @@ async function carregarLivros() {
     const selectLivro = document.getElementById("livro")
 
     livros.forEach(livro => {
-        selectLivro.innerHTML += `<option value="${livro.id}">${livro.titulo}</option>`
+        if (livro.status === "disponivel") {
+            selectLivro.innerHTML += `<option value="${livro.id}">${livro.titulo} (ID ${livro.id})</option>`
+        }
     })
 }
 
@@ -86,9 +88,9 @@ formulario.addEventListener(
         }
 
         else {
-            alert(
-                "Erro ao cadastrar empréstimo."
-            )
+            const erro = await resposta.json()
+
+            alert(erro.erro)
 
         }
         

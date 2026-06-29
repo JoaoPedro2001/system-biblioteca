@@ -4,14 +4,14 @@ from sqlalchemy import (
     String,
 )
 
-from database import Base, engine
+from database import Base
 
 class Livro(Base):
     __tablename__ = "livro"
     id = Column(Integer, primary_key=True, autoincrement=True)
     titulo = Column(String(200), nullable=False)
     autor = Column(String(150), nullable=False)
-    isbn = Column(String(20), unique=True, nullable=False)
+    isbn = Column(String(20), nullable=False)
     categoria = Column(String(100))
-    quantidade_total = Column(Integer, nullable=False)
-    quantidade_disponivel = Column(Integer, nullable=False)
+    status = Column(String(30), nullable=False, default="disponivel")
+    observacoes = Column(String(500))

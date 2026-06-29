@@ -219,15 +219,12 @@ __marimo__/
 
 # Adições para o sistema da biblioteca
 
-# Banco de dados SQLite
-*.db
-*.sqlite3
-
-# Pasta de dados
-data/
-
 # Vs Code
 .vscode/
+
+# Logs
+logs/
+*.log
 
 # Docker
 docker-compose.override.yml

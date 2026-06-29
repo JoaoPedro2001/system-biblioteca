@@ -8,35 +8,19 @@ formulario.addEventListener(
 
         event.preventDefault()
 
-        const livro = {
+                const livro = {
 
-            titulo: document.getElementById(
-                "titulo"
-            ).value,
+            titulo: document.getElementById("titulo").value,
 
-            autor: document.getElementById(
-                "autor"
-            ).value,
+            autor: document.getElementById("autor").value,
 
-            isbn: document.getElementById(
-                "isbn"
-            ).value,
+            isbn: document.getElementById("isbn").value,
 
-            categoria: document.getElementById(
-                "categoria"
-            ).value,
+            categoria: document.getElementById("categoria").value,
 
-            quantidade_total: parseInt(
-                document.getElementById(
-                    "quantidade"
-                ).value
-            ),
+            status: document.getElementById("status").value,
 
-            quantidade_disponivel: parseInt(
-                document.getElementById(
-                    "quantidade"
-                ).value
-            )
+            observacoes: document.getElementById("observacoes").value
 
         }
 
