@@ -19,7 +19,6 @@ def buscar_bibliotecario_por_id(bibliotecario_id):
         "id": bibliotecario.id,
         "nome": bibliotecario.nome,
         "email": bibliotecario.email,
-        "senha": bibliotecario.senha,
         "admin": bibliotecario.admin
     }
 

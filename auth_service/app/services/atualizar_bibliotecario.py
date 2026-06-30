@@ -1,4 +1,5 @@
 from app.models.bibliotecario import Bibliotecario
+from app.services.password_service import gerar_hash
 from database import SessionLocal
 
 def atualizar_bibliotecario(bibliotecario_id, data):
@@ -19,7 +20,7 @@ def atualizar_bibliotecario(bibliotecario_id, data):
     bibliotecario.email = data["email"]
 
     if "senha" in data:
-        bibliotecario.senha = data["senha"]
+        bibliotecario.senha = gerar_hash(data["senha"])
     
     bibliotecario.admin = data["admin"]
 
@@ -30,7 +31,6 @@ def atualizar_bibliotecario(bibliotecario_id, data):
         "id": bibliotecario.id,
         "nome": bibliotecario.nome,
         "email": bibliotecario.email,
-        "senha": bibliotecario.senha,
         "admin": bibliotecario.admin
     }
 

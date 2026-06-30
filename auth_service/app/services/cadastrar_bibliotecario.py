@@ -1,4 +1,5 @@
 from app.models.bibliotecario import Bibliotecario
+from app.services.password_service import gerar_hash
 from database import SessionLocal
 
 def cadastrar_bibliotecario(data):
@@ -7,7 +8,7 @@ def cadastrar_bibliotecario(data):
     novo_bibliotecario = Bibliotecario(
         nome=data["nome"],
         email=data["email"],
-        senha=data["senha"],
+        senha=gerar_hash(data["senha"]),
         admin=data["admin"]
     )
 
@@ -19,7 +20,6 @@ def cadastrar_bibliotecario(data):
         "id": novo_bibliotecario.id,
         "nome": novo_bibliotecario.nome,
         "email": novo_bibliotecario.email,
-        "senha": novo_bibliotecario.senha,
         "admin": novo_bibliotecario.admin
     }
 

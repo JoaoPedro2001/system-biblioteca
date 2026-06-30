@@ -1,5 +1,6 @@
 from database import SessionLocal
 from app.models.bibliotecario import Bibliotecario
+from app.services.password_service import gerar_hash
 
 db = SessionLocal()
 
@@ -8,8 +9,8 @@ db.query(Bibliotecario).delete()
 db.commit()
 
 bibliotecarios = [
-    Bibliotecario(nome="Administrador", email="admin@biblioteca.com", senha="admin123", admin=True),
-    Bibliotecario(nome="Funcionário", email="funcionario@biblioteca.com", senha="func123", admin=False)
+    Bibliotecario(nome="Administrador", email="admin@biblioteca.com", senha=gerar_hash("admin123"), admin=True),
+    Bibliotecario(nome="Funcionário", email="funcionario@biblioteca.com", senha=gerar_hash("func123"), admin=False)
 ]
 
 print("Populando tabelas do Auth Service...")

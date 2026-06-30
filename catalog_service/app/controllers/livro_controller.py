@@ -4,6 +4,7 @@ from app.services.livros.buscar_livro_por_id import buscar_livros_por_id  # Plur
 from app.services.livros.cadastrar_livro import cadastrar_livro
 from app.services.livros.atualizar_livro import atualizar_livro
 from app.services.livros.deletar_livro import deletar_livro
+
 def listar_livros():
     livros = buscar_livros()
     return jsonify(livros)

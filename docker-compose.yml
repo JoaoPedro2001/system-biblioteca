@@ -36,6 +36,7 @@ services:
       - "5001:5001"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/auth_db
+      - JWT_SECRET=${JWT_SECRET}
       - PORT=5001
     volumes:
       - ./auth_service:/app
@@ -52,6 +53,7 @@ services:
       - "5002:5002"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/catalog_db
+      - JWT_SECRET=${JWT_SECRET}
       - PORT=5002
     volumes:
       - ./catalog_service:/app
@@ -70,6 +72,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/loans_db
       - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=${JWT_SECRET}
       - PORT=5003
     volumes:
       - ./loans_service:/app

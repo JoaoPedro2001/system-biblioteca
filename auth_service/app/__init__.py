@@ -6,8 +6,10 @@ def create_app():
     app = Flask(__name__)
     CORS(app)
 
-    # Registra APENAS o blueprint de autenticação/bibliotecários
     from app.routes.bibliotecario_routes import bibliotecario_bp
+    from app.routes.autenticar_routes import autenticar_bp
+
     app.register_blueprint(bibliotecario_bp)
+    app.register_blueprint(autenticar_bp)
 
     return app

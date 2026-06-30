@@ -5,4 +5,4 @@ from app.models.livro import Livro
 print("Criando tabelas do Catalog Service...")
 Base.metadata.create_all(bind=engine)
 
-print("Tabela criada com sucesso!")
+print("Tabelas de livro e leitor criadas com sucesso!")
