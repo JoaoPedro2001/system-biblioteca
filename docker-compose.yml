@@ -1,32 +1,88 @@
 version: "3.9"
 
 services:
-
+  # --- BANCO DE DADOS ---
   postgres:
     image: postgres:17
     container_name: biblioteca_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: biblioteca_db
+      POSTGRES_MULTIPLE_DATABASES: auth_db,catalog_db,loans_db # Script vai criar estes 3
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
 
-  backend:
-    build: .
-    container_name: biblioteca_backend
+  # --- CACHE ---
+  redis:
+    image: redis:7-alpine
+    container_name: biblioteca_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  # --- MICROSSERVIÇO 1: AUTENTICAÇÃO/AUTH (BIBLIOTECÁRIOS) ---
+  auth_service:
+    build:
+      context: ./auth_service
+    container_name: msvc_biblioteca_auth
     restart: unless-stopped
     depends_on:
       - postgres
     ports:
-      - "5000:5000"
-    env_file:
-      - .env
+      - "5001:5001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/auth_db
+      - PORT=5001
     volumes:
-      - .:/app
+      - ./auth_service:/app
+
+  # --- MICROSSERVIÇO 2: CATÁLOGO/CATALOG (LIVROS E LEITORES) ---
+  catalog_service:
+    build:
+      context: ./catalog_service
+    container_name: msvc_biblioteca_catalog
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "5002:5002"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/catalog_db
+      - PORT=5002
+    volumes:
+      - ./catalog_service:/app
+
+  # --- MICROSSERVIÇO 3: EMPRÉSTIMOS/LOAN ---
+  loans_service:
+    build:
+      context: ./loans_service
+    container_name: msvc_biblioteca_loans
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5003:5003"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/loans_db
+      - REDIS_URL=redis://redis:6379/0
+      - PORT=5003
+    volumes:
+      - ./loans_service:/app
+
+  # FRONTEND
+  frontend_service:
+    build:
+      context: ./frontend
+    container_name: msvc_biblioteca_frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
 
 volumes:
   postgres_data:
