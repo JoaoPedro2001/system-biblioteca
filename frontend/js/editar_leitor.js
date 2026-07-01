@@ -82,9 +82,8 @@ formulario.addEventListener(
 
         else {
 
-            alert(
-                "Erro ao atualizar leitor."
-            )
+            const erro = await resposta.json();
+            alert(erro.erro);
 
         }
 

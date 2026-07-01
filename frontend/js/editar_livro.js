@@ -106,9 +106,8 @@ formulario.addEventListener(
 
         else {
 
-            alert(
-                "Erro ao atualizar livro."
-            )
+            const erro = await resposta.json();
+            alert(erro.erro);
 
         }
 

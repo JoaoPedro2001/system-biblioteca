@@ -108,7 +108,9 @@ async function carregarLeitores() {
                 );
 
                 if (!resposta.ok) {
-                    throw new Error("Erro ao remover leitor");
+                    const erro = await resposta.json();
+                    alert(erro.erro);
+                    return;
                 }
 
                 alert("Leitor removido com sucesso");

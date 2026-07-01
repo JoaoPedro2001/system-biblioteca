@@ -115,7 +115,9 @@ async function carregarLivros() {
                 );
 
                 if (!resposta.ok) {
-                    throw new Error("Erro ao remover livro");
+                    const erro = await resposta.json();
+                    alert(erro.erro);
+                    return;
                 }
 
                 alert("Livro removido com sucesso");

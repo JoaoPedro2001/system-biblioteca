@@ -31,6 +31,8 @@ def editar_emprestimo(emprestimo_id):
 
 def remover_emprestimo(emprestimo_id):
     removido = deletar_emprestimo(emprestimo_id)
-    if not removido:
-        return jsonify({"erro": "Emprestimo não encontrado"}), 404
-    return jsonify({"mensagem": "Emprestimo removido com sucesso"}), 200
+    if "erro" in removido:
+        if removido["erro"] == "Emprestimo não encontrado":
+            return jsonify(removido), 404
+        return jsonify(removido), 409
+    return jsonify(removido), 200

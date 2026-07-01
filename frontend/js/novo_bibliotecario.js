@@ -73,9 +73,9 @@ formulario.addEventListener(
 
         else {
 
-            alert(
-                "Erro ao cadastrar bibliotecário."
-            )
+            const erro = await resposta.json();
+
+            alert(erro.erro);
 
         }
 

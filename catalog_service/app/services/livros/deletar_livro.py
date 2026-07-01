@@ -1,15 +1,33 @@
 from app.models.livro import Livro
 from database import SessionLocal
 
+
 def deletar_livro(livro_id):
     session = SessionLocal()
-    livro = session.query(Livro).filter(Livro.id == livro_id).first()
+
+    livro = (
+        session.query(Livro)
+        .filter(Livro.id == livro_id)
+        .first()
+    )
 
     if not livro:
         session.close()
         return None
-    
+
+    # REGRA DE NEGÓCIO
+    # Não permitir exclusão de livros emprestados
+
+    if livro.status == "emprestado":
+        session.close()
+        return {
+            "erro": "Livro não pode ser deletado porque está emprestado."
+        }
+
     session.delete(livro)
     session.commit()
     session.close()
-    return True
+
+    return {
+        "mensagem": "Livro deletado com sucesso."
+    }

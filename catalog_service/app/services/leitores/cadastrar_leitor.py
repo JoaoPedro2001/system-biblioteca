@@ -1,9 +1,28 @@
 from datetime import date
+
 from app.models.leitor import Leitor
 from database import SessionLocal
 
+
 def cadastrar_leitor(data):
     session = SessionLocal()
+
+    # REGRA DE NEGÓCIO
+    # Não permitir leitores com e-mail duplicado.
+
+    leitor_existente = (
+        session
+        .query(Leitor)
+        .filter(Leitor.email == data["email"])
+        .first()
+    )
+
+    if leitor_existente:
+        session.close()
+        return {
+            "erro": "Já existe um leitor cadastrado com este e-mail."
+        }
+
     novo_leitor = Leitor(
         nome=data["nome"],
         email=data["email"],
@@ -22,5 +41,7 @@ def cadastrar_leitor(data):
         "telefone": novo_leitor.telefone,
         "data_cadastro": novo_leitor.data_cadastro
     }
+
     session.close()
+
     return resultado

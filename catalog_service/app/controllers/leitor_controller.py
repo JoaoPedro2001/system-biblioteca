@@ -18,6 +18,8 @@ def listar_leitor_por_id(leitor_id):
 def criar_leitor():
     data = request.get_json()
     leitor = cadastrar_leitor(data)
+    if "erro" in leitor:
+        return jsonify(leitor), 409
     return jsonify(leitor), 201
 
 def editar_leitor(leitor_id):
@@ -28,7 +30,9 @@ def editar_leitor(leitor_id):
     return jsonify(leitor), 200
 
 def remover_leitor(leitor_id):
-    removido = deletar_leitor(leitor_id)
-    if not removido:
+    resultado = deletar_leitor(leitor_id)
+    if resultado is None:
         return jsonify({"erro": "Leitor não encontrado"}), 404
-    return jsonify({"mensagem": "Leitor removed com sucesso"}), 200
+    if isinstance(resultado, dict) and "erro" in resultado:
+        return jsonify(resultado), 409
+    return jsonify({"mensagem": "Leitor removido com sucesso"}), 200

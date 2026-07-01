@@ -70,9 +70,8 @@ formulario.addEventListener(
 
         else {
 
-            alert(
-                "Erro ao atualizar empréstimo."
-            )
+            const erro = await resposta.json();
+            alert(erro.erro);
 
         }
 

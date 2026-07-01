@@ -18,6 +18,8 @@ def listar_bibliotecario_por_id(bibliotecario_id):
 def criar_bibliotecario():
     data = request.get_json()
     bibliotecario = cadastrar_bibliotecario(data)
+    if "erro" in bibliotecario:
+        return jsonify(bibliotecario), 409
     return jsonify(bibliotecario), 201
 
 def editar_bibliotecario(bibliotecario_id):

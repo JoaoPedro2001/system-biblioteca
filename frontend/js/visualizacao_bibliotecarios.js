@@ -104,11 +104,13 @@ async function carregarBibliotecarios() {
                     }
                 );
 
+                const resultado = await resposta.json();
+
                 if (!resposta.ok) {
-                    throw new Error("Erro ao remover bibliotecário");
+                    alert(resultado.erro)
                 }
 
-                alert("Bibliotecário removido com sucesso");
+                alert(resultado.mensagem);
 
                 carregarBibliotecarios();
 

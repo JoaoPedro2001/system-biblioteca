@@ -52,9 +52,9 @@ formulario.addEventListener(
 
         else {
 
-            alert(
-                "Erro ao cadastrar leitor."
-            )
+            const erro = await resposta.json();
+
+            alert(erro.erro);
 
         }
 

@@ -111,7 +111,9 @@ async function carregarEmprestimos() {
                 );
 
                 if (!resposta.ok) {
-                    throw new Error("Erro ao remover empréstimo");
+                    const erro = await resposta.json();
+                    alert(erro.erro);
+                    return;
                 }
 
                 alert("Empréstimo removido com sucesso");

@@ -112,9 +112,8 @@ formulario.addEventListener(
 
         else {
 
-            alert(
-                "Erro ao atualizar bibliotecário."
-            )
+            const erro = await resposta.json();
+            alert(erro.erro);
 
         }
 

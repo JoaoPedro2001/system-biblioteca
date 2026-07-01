@@ -9,12 +9,23 @@ def atualizar_livro(livro_id, data):
         session.close()
         return None
     
-    livro.titulo = data["titulo"]
-    livro.autor = data["autor"]
-    livro.isbn = data["isbn"]
-    livro.categoria = data["categoria"]
-    livro.status = data["status"]
-    livro.observacoes = data.get("observacoes", "")
+    if "titulo" in data:
+        livro.titulo = data["titulo"]
+
+    if "autor" in data:
+        livro.autor = data["autor"]
+
+    if "isbn" in data:
+        livro.isbn = data["isbn"]
+
+    if "categoria" in data:
+        livro.categoria = data["categoria"]
+
+    if "status" in data:
+        livro.status = data["status"]
+
+    if "observacoes" in data:
+        livro.observacoes = data["observacoes"]
     
     session.commit()
     session.refresh(livro)

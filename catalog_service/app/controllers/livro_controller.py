@@ -31,4 +31,6 @@ def remover_livro(livro_id):
     removido = deletar_livro(livro_id)
     if not removido:
         return jsonify({"erro": "Livro não encontrado"}), 404
-    return jsonify({"mensagem": "Livro removido com sucesso"}), 200
+    if "erro" in removido:
+        return jsonify(removido), 409
+    return jsonify(removido), 200
