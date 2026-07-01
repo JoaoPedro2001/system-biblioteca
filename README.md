@@ -47,7 +47,7 @@ O sistema do projeto também possui em seu código um conjunto de regras de neg�
 
 ### Regras de autenticação (Auth):
 
-* Regra 1 - Não permitir duplicidade de bibliotecarios cadastrados (ducplicaçaõ de email)
+* Regra 1 - Não permitir duplicidade de bibliotecarios cadastrados (duplicação de email)
 
 ## Como configurar
 
