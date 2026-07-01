@@ -17,6 +17,38 @@ O projeto system-biblioteca consiste em um sistema de gerenciamento de bibliotec
   * Python: Utilizado no banco de dados em conjunto com SQLAlquemy e back-end em conjunto com o Flask;
   * HTML, CSS e JavaScript: utlizados Front-end, sendo facilitados pelo uso do Bootstrap.
 
+## Estrutura dos microsserviços
+
+O sistema do projeto de biblioteca foi reestruturado para o paradigma arquitetural de microsserviços. Devido a isso, ele se apresenta com uma nova estrutura organizacional, focada em três pastas principais, as quais interagem com containers do docker para manterem seu conteúdo independentes dentre sí, com cada microsservico contendo seu próprio banco de dados independente. tais pastas também possuem uma estrutura MVC interna, armazenam os códigos referentes a criação de tabelas e povoamento de dados iniciais dos próprios bancos de dados, e abriagam os códigos de serviço referentes as operações CRUD do sistema. As pastas de microsseviço são dividas em:
+
+* auth_service: Responsável por abrigar o banco de dados referente aos bibliotecários, assim como o sistema de autenticação do projeto e os serviços;
+* catalog_service: Responsável pelo armazenameto de dados referentes a livros e leitores cadastrados no sistema;
+* loans_service: Responsável por armazenar os dados referentes aos emprestimos realizados com o sistema, assim como os códigos das operações CRUD responsáveis por tais emprestimos.
+
+## Regras de negócio
+
+O sistema do projeto também possui em seu código um conjunto de regras de negócio, um conjunto de diretrizes implementadas em código as quais determinam o comportamento do sistema com relação a certas interações que nele podem ocorrer. Tais regras são:
+
+### Regras de emprestimo (Loans):
+
+* Regra 1 - Não permitir empréstimo de livro indisponível
+
+* Regra 2 - Atualizar status do livro automaticamente
+
+* Regra 3 - Não permitir exclusão de empréstimo ativo
+
+### Regras de catálogo (Catalog):
+
+* Regra 1 - Não permitir exclusão de livro emprestado
+
+* Regra 2 - Não permitir exclusão de leitor com empréstimos ativos
+
+* Regra 3 - Não permitir duplicidade de leitores cadastrados (email)
+
+### Regras de autenticação (Auth):
+
+* Regra 1 - Não permitir duplicidade de bibliotecarios cadastrados (email)
+
 ## Como configurar
 
 Após baixar o código do sistema em seu ambiente de desenvolvimeto, deve-se preparar o ambiente virtual venv, o qual já vem inserido no Python. O venv possui duas formas de preparo dependendo se está sendo utilizado um sistema Linux ou Python. Abaixo, encontram-se as instruçoes para ambos (O desenvolvimento do projeto foi feito em sistema Linux Mint):
@@ -58,49 +90,65 @@ deactivate
 
 ### Requirements
 
-A pasta do sistema contém um arquivo chamado requirements.txt, o qual possui uma lista das extenções necessárias para rodar o sistema. Para instalar as extenções, voce pode usar o seguinte comando no terminal assim que o venv for ativado:
+Este sistema opera contendo um conjunto de arquivos requirements.txt dentro das pastas de microsserviços os quais contem listas de extensões necessarias para rodar o seu respectivo microsseviço no sistema. Devido a forma como estas pastas foram confirguradas para rodar com o docker, elas não quererem instalação manual, com as extensões presentes sendo automaticamente aplicadas quando o docker é ativado. A instalação do docker é um processo que vária de acordo diversos elementos do sistema em que se deseja implementar, devido a isso, deve-se buscar informações sobre sua instalação em sua página oficial referente a implementação em sistemas:
 
+<https://docs.docker.com/desktop/>
+
+Com o docker instalado, você deve fazer com que ele inicie rodando o seguinte comando na raiz do projeto, por meio do terminal:
 
 ```bash
-pip install -r requirements.txt
+docker compose up --build -d
 ```
+
+Além disso, para poder aplicar o banco de dados do sistema, é necessário instalar o PostgreSQL, que de forma similar ao docker, possui processos de instalação distintos de acordo com o sistema que se esteja trabalhando. devido a issso, deve-se buscar amis informações para a sua instalação em sua página oficial:
+
+<https://www.postgresql.org/download/>
 
 ### Banco de dados
 
-Primeiro, verifique se seu dispositivo possui SQLite3 instalado, Caso não, instale-o com o seguinte comando de terminal caso esteja em sistema Linux:
+Devido a estrutura de microsserviços, o banco de dados do projeto consiste em diferentes bancos os quais existem de forma independente em cada microsserviço interagindo entre si por meio das aplicações de serviço e as regras de negócio que neles são aplicadas. Tais bancos de dados são gerenciados com o uso PosgreSQL o qual é aplicado em conjundo com o docker para gerar suas tabelas e povoa-las. Para aplicar as tabelas dos bancos de dados do projeto, deve-se  prineiro inicializar o docker e após isso, aplciar os seguintes comandos na raíz do terminal:
 
 ```bash
-sudo apt install sqlite3
+docker compose exec auth_service python create_tables.py
+
+docker compose exec catalog_service python create_tables.py
+
+docker compose exec loans_service python create_tables.py
 ```
-
-Em caso de estar usando Windows, use o site oficial do SQLite para baixar um instalador em arquivo .zip (https://sqlite.org/download.html).
-
-Com o ambiente virtual ativado, insira o código abaixo no terminal para criar o banco de dados, sendo gerada uma pasta "data", a qual armazenara o arquivo biblioteca_db.db, sendo este o arquivo de banco de dados gerado com o SQLite3:
+Após isso, para povoar as tabelas geradas, aplica-se os seguintes comandos:
 
 ```bash
-python create_tables.py
+docker compose exec auth_service python seed.py
+
+docker compose exec catalog_service python seed.py
 ```
 
-Após isso, insira no terminal o comando abaixo para popular o banco de dados com os dados iniciais padrão (Você pode usar este comando novamente caso queirar que os dados do banco voltem a um estado padrâo):
+Percebe-se que não há comnando para povar as tabelas referentas a loans_service, isso é intencional, pois o banco deste microsserviço é responsável pelos registros de emprestimos de livros, e por padrão, se iniciam vazíos no sistema.
 
-```bash
-python seed.py
-```
 ### Rodar código
 
-Após criar e popular o banco de dados, voçê pode rodar o sistema por meio do código abaixo, inserindo-o no terminal:
+Após criar e popular o banco de dados, voçê pode utilizar o sistema, o qual começa a rodar de forma automática no momento em que voçe inicia o docker.
+
+Para acessar o sitema do projeto, utilize o link Localhost (http://127.0.0.1:8080) o qual você pode usar em seu navegador para acessar o sistema por meio do front-end em página web local a qual está conectada ao banco de dados por meio do Flask.
+
+Para fazer com que o sistema pare de rodar, voce pode o comando abaixo no terminal para finalizar a seção.
 
 ```bash
-python run.py
+docker compose down
 ```
-
-Com este código rodando, será geado no terminal um link Localhost (http://127.0.0.1:5000) o qual você pode usar em seu navegador para acessar o sistema por meio do front-end em página web local a qual está conectada ao banco de dados por meio do Flask.
-
-Para fazer com que o run.py pare de rodar, voce pode utilizar ctrl + c no terminal para finalizar a seção.
 
 ### Tutorial do front-end
 
-Ao acessar o front-end por meio do link localhost, você verá uma tela inicial com dois com quatro botões, os quais o levarão para a pagina de visualização das tabelas correspondentes e que também contem as opções de interação das operações CRUD com o banco de dados. Estes botões são:
+Ao acessar o front-end por meio do link localhost, você verá uma tela inicial a qual apresenta um sisteam de login do sistema. Para acessá-lo, deve-se informar o e-mail de usuário e sua respectiva senha. Para fins de primeiro acesso, pode-se utilizar o acesso do administrador:
+
+* E-mail: admin@biblioteca.com
+* senha: admin123
+
+Ao preencher corretamente o e-mail e senha, clique em entrar para obter acesso ao sistema e sua primeira tela.
+
+#### Menu
+
+A tela inicial do sistema após a realização fo login. A tela de menu contem quatro botões principais, os quais o levarão para a pagina de visualização das tabelas correspondentes e que também contem as opções de interação das operações CRUD com o banco de dados. A tela de menu também possui um quinto botão no canto superiro esquerdo nomeado logout, o qual pode ser usado para retornar a página de login. Com relação aos botões principais, eles são:
 
 * Livros;
 * Leitores;
