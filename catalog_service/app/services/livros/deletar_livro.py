@@ -1,5 +1,6 @@
 from app.models.livro import Livro
 from database import SessionLocal
+from app.cache.redis_client import cache
 
 
 def deletar_livro(livro_id):
@@ -26,6 +27,8 @@ def deletar_livro(livro_id):
 
     session.delete(livro)
     session.commit()
+    cache.delete("livros:all")
+    cache.delete(f"livro:{livro_id}")
     session.close()
 
     return {

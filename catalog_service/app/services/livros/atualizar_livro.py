@@ -1,5 +1,6 @@
 from app.models.livro import Livro
 from database import SessionLocal
+from app.cache.redis_client import cache
 
 def atualizar_livro(livro_id, data):
     session = SessionLocal()
@@ -28,6 +29,8 @@ def atualizar_livro(livro_id, data):
         livro.observacoes = data["observacoes"]
     
     session.commit()
+    cache.delete("livros:all")
+    cache.delete(f"livro:{livro_id}")
     session.refresh(livro)
     
     resultado = {

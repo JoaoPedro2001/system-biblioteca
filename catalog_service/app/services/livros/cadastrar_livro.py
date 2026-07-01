@@ -1,5 +1,6 @@
 from app.models.livro import Livro
 from database import SessionLocal
+from app.cache.redis_client import cache
 
 def cadastrar_livro(data):
     session = SessionLocal()
@@ -14,6 +15,7 @@ def cadastrar_livro(data):
 
     session.add(novo_livro)
     session.commit()
+    cache.delete("livros:all")
     session.refresh(novo_livro)
 
     resultado = {
@@ -25,5 +27,6 @@ def cadastrar_livro(data):
         "status": novo_livro.status,
         "observacoes": novo_livro.observacoes
     }
+
     session.close()
     return resultado
