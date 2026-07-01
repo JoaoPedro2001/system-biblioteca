@@ -1,14 +1,18 @@
 # system-biblioteca
-(Projeto de desenvolvimento web 2 cujo objetivo a criação de um sistema em arquitetura MVC que rode localmente)
+(Projeto de desenvolvimento web 2 cujo objetivo original era criação de um sistema em arquitetura MVC que rode localmente, e que agora foi expandido para aplicação em nuvem)
 
 O projeto system-biblioteca consiste em um sistema de gerenciamento de biblioteca criado em Arquitetura MVC e utilizando o paradigma arquitetural de Microsservicos, cujo objetivo é a organização dos dados referentes ao funcionamento da biblioteca em que é aplicado, permitindo o registro, armazenamento a manipulação de dados referentes aos bibliotecários que nela trabalham, os livros que se encontram disponíveis, os emprestimos realizados, e os leitores cadastrados para os emprestimos de livros. 
 
 ## Tecnologias utlizadas
 * VS Code: Ambiente de desenvolvimento utilizado no desenvolvimento do projeto;
-* SQLite3: Sistema de gerenciamento de banco de dados utlizado para a criação do banco e manipulação dos dados nele armazaenados;
+* PostgreSQL: Sistema de gerenciamento de banco de dados utlizado para a criação do banco e manipulação dos dados nele armazaenados;
 * SQLAlchemy: Biblioteca Python utilizada para trabalhar com bancos de dados por meio de linguagem python, sendo usada na criação do banco de dados e suas tabelas (tables), além da interação das demais partes do sistema com o bancod de dados;
 * Flask: Microframework web para Python usado no desenvolimento de aplicações web e APIs, sendo utilizada no back-end do projeto para o estabelecimento das rotas que o sistema usa para integarir com o banco de dados, além de também ter sido utilizado para a definição de rodas das telas do front-end, permitindo que a página inicial (index.html) seja aberta por meio do link localhost gerado ao ativar o sistema;
 * Bootsrap: Framework front-end baseado em HTML, CSS e JavaScript usado para criar interfaces web responsivas e modernas, tendo sido aplicado no front-end deste projeto para a criação das telas que permitem a interação com as operações CRUD de manipulação de dados no banco;
+* Docker: O Docker é uma plataforma de conteinerização que permite empacotar uma aplicação e todas as suas dependências, como bibliotecas, arquivos de configuração, entre outros, em um único "contêiner", sendo implementado neste Projeto para realizar o isolamento dos microsserviços projetados, além de ser utilizado na aplicação do frontend e na implementação de cache, atuando em conjunto com o Redis;
+* PyJWT: O PyJWT é uma biblioteca Python utilizada para codificar e decodificar JSON Web Tokens, um padrão de comunicação compacto e seguro o qual pode ser usado para troca de informações sensíveis para fins de validação em sistemas, sendo utilizado no projeto para a aplicação do sistema de autenticação presente no login; 
+* bcrypt: O bcrypt é uma biblioteca usada para realizar atividades de criptografia e hashing de senhas. Baseada em um algoritmo criptográfico de mesmo nome, ele é aplicado no projeto como medida de segurança para a proteção de senhas salvas no banco, sendo utilizado nos serviços de cadastro e atualização de senhas para bibliotecários e nos sistemas de povoamento do banco com dados iniciais;
+* Redis: O Redis é um armazenamento de estrutura de dados em memória o qual é usado principalmente em banco de dados, message broker, e cache, sendo utilizado no projeto para a implementação deste ultimo em conjunto com o docker. O cache gerado com o redis é aplicado nas operações crud refentens ao armazenamento de dados de livros; 
 * Linguagems de programação:
   * Python: Utilizado no banco de dados em conjunto com SQLAlquemy e back-end em conjunto com o Flask;
   * HTML, CSS e JavaScript: utlizados Front-end, sendo facilitados pelo uso do Bootstrap.
