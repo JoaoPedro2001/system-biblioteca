@@ -88,6 +88,10 @@ Em ambos os casos, você pode desativar o venv usando o seguinte comando no term
 deactivate
 ```
 
+### Observação
+
+O projeto possui um arquivo nomeado .env.example, o qual contem dados sensíveis referentes a criptografia do JWT. Para que o sistema possa rodar corretamente, deve-se editar o nome deste arquivo, para .env.
+
 ### Requirements
 
 Este sistema opera contendo um conjunto de arquivos requirements.txt dentro das pastas de microsserviços os quais contem listas de extensões necessarias para rodar o seu respectivo microsseviço no sistema. Devido a forma como estas pastas foram confirguradas para rodar com o docker, elas não quererem instalação manual, com as extensões presentes sendo automaticamente aplicadas quando o docker é ativado. A instalação do docker é um processo que vária de acordo diversos elementos do sistema em que se deseja implementar, devido a isso, deve-se buscar informações sobre sua instalação em sua página oficial referente a implementação em sistemas:
