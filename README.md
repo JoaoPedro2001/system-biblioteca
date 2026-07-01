@@ -43,11 +43,11 @@ O sistema do projeto também possui em seu código um conjunto de regras de neg�
 
 * Regra 2 - Não permitir exclusão de leitor com empréstimos ativos
 
-* Regra 3 - Não permitir duplicidade de leitores cadastrados (email)
+* Regra 3 - Não permitir duplicidade de leitores cadastrados (duplicação de email)
 
 ### Regras de autenticação (Auth):
 
-* Regra 1 - Não permitir duplicidade de bibliotecarios cadastrados (email)
+* Regra 1 - Não permitir duplicidade de bibliotecarios cadastrados (ducplicaçaõ de email)
 
 ## Como configurar
 
